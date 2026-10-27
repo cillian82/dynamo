@@ -9085,6 +9085,7 @@ mod tests {
                 prompt_logprobs: None,
                 llm_metrics: None,
                 tool_call_completion: Vec::new(),
+                model_eos: Vec::new(),
             }),
             id: Some("msg-1".to_string()),
             event: None,
@@ -9742,6 +9743,7 @@ mod tests {
                 prompt_logprobs: None,
                 llm_metrics: None,
                 tool_call_completion: Vec::new(),
+                model_eos: Vec::new(),
             }),
             id: Some("msg-1".to_string()),
             event: None,
@@ -9835,6 +9837,7 @@ mod tests {
                 prompt_logprobs: None,
                 llm_metrics: None,
                 tool_call_completion: Vec::new(),
+                model_eos: Vec::new(),
             }),
             id: Some("msg-1".to_string()),
             event: None,
@@ -10249,6 +10252,7 @@ mod tests {
             prompt_logprobs: None,
             llm_metrics: None,
             tool_call_completion: Vec::new(),
+            model_eos: Vec::new(),
         };
         Annotated {
             id: Some("test-id".to_string()),
@@ -10892,6 +10896,7 @@ mod tests {
             prompt_logprobs: None,
             llm_metrics: None,
             tool_call_completion: Vec::new(),
+            model_eos: Vec::new(),
         }
     }
 
