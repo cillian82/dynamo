@@ -886,7 +886,6 @@ impl State {
         self.frontend_api_config.reasoning_field()
     }
 
-    /// Serving policy that the chat handlers apply to each request.
     pub fn serving_policy(&self) -> &ServingPolicy {
         self.frontend_api_config.serving_policy()
     }

@@ -808,7 +808,8 @@ class FrontendArgGroup(ArgGroup):
             help=(
                 "JSON object of chat template kwargs that apply to every chat request "
                 "this frontend serves, for every model. Each request's own "
-                "chat_template_kwargs win per key, and a request thinking control "
+                'chat_template_kwargs win per key, except null and "auto" values, '
+                "and a request thinking control "
                 "replaces the thinking keys. Set this on the frontend, not on the "
                 "engine: the frontend renders the chat template, so the engine flag "
                 "has no effect behind Dynamo."

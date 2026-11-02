@@ -245,15 +245,8 @@ def load_frontend_route_extensions(extension_names: list[str]) -> list[FrontendR
 def _fold_vllm_default_chat_template_kwargs(
     config: FrontendConfig, vllm_flags: Namespace
 ) -> None:
-    """Fold vLLM's parse of --default-chat-template-kwargs into the frontend flag.
-
-    vLLM's parser also takes --default_chat_template_kwargs and the dotted
-    --default-chat-template-kwargs.<key> form, which the frontend parser leaves
-    unparsed. The HTTP handlers apply the folded value to every request.
-    vLLM's value always comes from the command line, and the frontend value can
-    come from DYN_DEFAULT_CHAT_TEMPLATE_KWARGS, so vLLM's keys win. A dotted key
-    also overrides one key of the JSON form, as in vLLM.
-    """
+    # vLLM's parser also takes the underscore and dotted spellings. Its value always comes
+    # from the command line, so it wins over DYN_DEFAULT_CHAT_TEMPLATE_KWARGS.
     vllm_defaults = getattr(vllm_flags, "default_chat_template_kwargs", None) or {}
     if vllm_defaults:
         config.default_chat_template_kwargs = {

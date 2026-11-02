@@ -152,7 +152,8 @@ Thinking controls use this precedence order:
 Explicit request controls include root-level `thinking`, top-level
 `reasoning_effort`, and the `thinking`, `enable_thinking`, `thinking_mode`, or
 `reasoning_effort` fields in `chat_template_args` or
-`chat_template_kwargs`.
+`chat_template_kwargs`. When the frontend sets `--default-chat-template-kwargs`,
+a request value of `null` or `"auto"` counts as unset.
 
 The deployment option intentionally accepts only `enabled` and `disabled`.
 Models that support adaptive thinking can still select it per request:

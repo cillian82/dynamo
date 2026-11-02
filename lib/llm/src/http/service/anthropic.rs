@@ -1248,8 +1248,6 @@ fn gate_anthropic_nvext(
     Ok(())
 }
 
-/// Layer the chat template args for an Anthropic request: the thinking decision,
-/// then the frontend's defaults, then the history fallback.
 fn apply_anthropic_template_args(
     request: &mut NvCreateChatCompletionRequest,
     prompt_injected_reasoning: bool,
@@ -1659,18 +1657,14 @@ mod tests {
             "truncate_history_thinking": true,
         });
 
-        // The thinking decision wins over a default thinking key, and a default
-        // still sets the history key.
         assert_eq!(
             args(defaults.clone(), true),
             serde_json::json!({"enable_thinking": true, "truncate_history_thinking": true})
         );
-        // Without a default, the history fallback applies.
         assert_eq!(
             args(serde_json::json!({}), true),
             serde_json::json!({"enable_thinking": true, "truncate_history_thinking": false})
         );
-        // Without a reasoning parser, the defaults apply as they are.
         assert_eq!(args(defaults.clone(), false), defaults);
     }
 

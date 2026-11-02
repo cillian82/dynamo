@@ -169,8 +169,7 @@ def _parse_cli_args(argv: list[str] | None) -> tuple[Config, argparse.Namespace]
     # Consume the router flags before the engine parser sees the remainder.
     dynamo_config.router_advertisement, unknown = parse_worker_router_config(unknown)
 
-    # The Dynamo frontend renders the chat template, so vLLM's serving flag has no
-    # effect on a worker. Name the frontend flag instead of a generic parse error.
+    # Name the frontend flag instead of failing with vLLM's generic parse error.
     if any(
         arg.split("=", 1)[0].split(".", 1)[0]
         in ("--default-chat-template-kwargs", "--default_chat_template_kwargs")
