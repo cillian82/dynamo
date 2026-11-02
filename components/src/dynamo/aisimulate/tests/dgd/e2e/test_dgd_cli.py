@@ -192,11 +192,14 @@ def _assert_dgd_outputs(
                 "--max-model-len": config["context_length"],
                 "--max-num-seqs": config[f"{role}_max_num_seqs"],
                 "--max-num-batched-tokens": config[f"{role}_max_num_batched_tokens"],
-                "--block-size": config[f"{role}_block_size"],
+                "--block-size": config.get(f"{role}_block_size"),
                 "--num-gpu-blocks-override": config[f"{role}_num_gpu_blocks"],
             }.items():
-                assert args.count(flag) == 1
-                assert args[args.index(flag) + 1] == str(expected)
+                if expected is None:
+                    assert flag not in args
+                else:
+                    assert args.count(flag) == 1
+                    assert args[args.index(flag) + 1] == str(expected)
             assert ("--no-enable-prefix-caching" in args) != config[
                 f"{role}_enable_prefix_caching"
             ]
